@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audit Logs</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    header {
+      background: #4B6EF6;
+      padding: 20px 30px;
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      background: #f6f8fb;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .log-type {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .info {
+      background-color: #e0f0ff;
+      color: #0078d4;
+    }
+
+    .warning {
+      background-color: #fff4e5;
+      color: #d97706;
+    }
+
+    .error {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+
+<header>📜 Audit Logs - Change History</header>
+
+<div class="container">
+  <h2>All System Activity Logs</h2>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" onkeyup="filterLogs()" placeholder="Search by user, action or type...">
+  </div>
+
+  <table id="logTable">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>User</th>
+        <th>Action</th>
+        <th>Log Type</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2025-05-15 09:30 AM</td>
+        <td>Admin</td>
+        <td>Edited Session</td>
+        <td><span class="log-type info">Info</span></td>
+        <td>Session ID 123 updated with new time.</td>
+      </tr>
+      <tr>
+        <td>2025-05-14 04:50 PM</td>
+        <td>MentorA</td>
+        <td>Deleted Receipt</td>
+        <td><span class="log-type warning">Warning</span></td>
+        <td>Receipt #456 was deleted before payout.</td>
+      </tr>
+      <tr>
+        <td>2025-05-13 11:10 AM</td>
+        <td>System</td>
+        <td>Database Sync Error</td>
+        <td><span class="log-type error">Error</span></td>
+        <td>Connection lost while syncing audit data.</td>
+      </tr>
+      <tr>
+        <td>2025-05-13 10:15 AM</td>
+        <td>Admin</td>
+        <td>Logged In</td>
+        <td><span class="log-type info">Info</span></td>
+        <td>Admin successfully logged in.</td>
+      </tr>
+      <tr>
+        <td>2025-05-12 06:00 PM</td>
+        <td>MentorB</td>
+        <td>Generated Receipt</td>
+        <td><span class="log-type info">Info</span></td>
+        <td>Receipt #789 generated for May session.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+function filterLogs() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let rows = document.querySelectorAll("#logTable tbody tr");
+
+  rows.forEach(row => {
+    let text = row.innerText.toLowerCase();
+    if (text.includes(input)) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

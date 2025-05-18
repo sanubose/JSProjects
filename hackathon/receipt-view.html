@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Receipt View | Mentor Panel</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fb;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #1a1f36;
+      color: white;
+      padding: 30px 0;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 14px 30px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #2e3652;
+    }
+
+    .main {
+      margin-left: 230px;
+      flex: 1;
+      padding: 40px;
+    }
+
+    .main h1 {
+      margin-bottom: 20px;
+      color: #1a1f36;
+    }
+
+    .receipt-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .receipt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+    }
+
+    .receipt-header h2 {
+      color: #333;
+    }
+
+    .details {
+      margin-top: 20px;
+    }
+
+    .details p {
+      margin: 10px 0;
+      color: #444;
+    }
+
+    .amount {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4a90e2;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #1abc9c;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #149d82;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Mentor Panel</h2>
+    <a href="mentor-dashboard.html">Dashboard</a>
+    <a href="mentor-sessions.html">My Sessions</a>
+    <a href="receipt-view.html">Receipts</a>
+    <a href="chat.html">Chat with Admin</a>
+    <a href="home.html">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Receipt View</h1>
+
+    <div class="receipt-card" id="receipt">
+      <div class="receipt-header">
+        <h2>Receipt #202504</h2>
+        <span>April 2025</span>
+      </div>
+
+      <div class="details">
+        <p><strong>Mentor:</strong> Ravi Kumar</p>
+        <p><strong>Email:</strong> ravi.kumar@example.com</p>
+        <p><strong>Sessions Completed:</strong> 12</p>
+        <p><strong>Rate per Session:</strong> ₹1000</p>
+        <p><strong>Bonus:</strong> ₹500</p>
+        <p class="amount">Total Payout: ₹12,500</p>
+      </div>
+
+      <!-- <a href="#" class="download-btn">⬇ Download PDF</a> -->
+       <a href="#" class="download-btn" onclick="downloadReceipt()">⬇ Download PDF</a>
+    </div>
+
+    <footer>
+      © 2025 Payout Automation Platform — Mentor Panel
+    </footer>
+  </div>
+     
+
+
+   <script>
+    function downloadReceipt() {
+      let element = document.getElementById('receipt');
+      let opt = {
+        margin: 0.5,
+        filename: 'receipt-202504.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+</body>
+</html>

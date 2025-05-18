@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Session Upload | Admin Panel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f6fb;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #1a1f36;
+      color: white;
+      padding-top: 30px;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 14px 30px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #2e3652;
+    }
+
+    .main-content {
+      margin-left: 230px;
+      padding: 30px 40px;
+      flex: 1;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .top-bar h1 {
+      color: #1a1f36;
+    }
+
+    .form-section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+      margin-bottom: 30px;
+    }
+
+    .form-section h2 {
+      margin-bottom: 20px;
+      color: #1a1f36;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #4a90e2;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3366cc;
+    }
+
+    .upload-section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="session-upload.html">Add/Upload Sessions</a>
+    <a href="generate-receipts.html">Generate Receipts</a>
+    <a href="audit-log.html">Audit Logs</a>
+    <a href="test-mode.html">Test Mode</a>
+    <a href="home.html">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="top-bar">
+      <h1>Add or Upload Sessions</h1>
+    </div>
+
+    <!-- Manual Entry -->
+    <div class="form-section">
+      <h2>Manual Session Entry</h2>
+      <form>
+        <label>Mentor Name</label>
+        <input type="text" placeholder="Enter mentor name" required />
+
+        <label>Session Date & Time</label>
+        <input type="datetime-local" required />
+
+        <label>Session Type</label>
+        <select required>
+          <option value="">Select Type</option>
+          <option value="Live">Live Session</option>
+          <option value="Evaluation">Evaluation</option>
+          <option value="Review">Recording Review</option>
+        </select>
+
+        <label>Duration (minutes)</label>
+        <input type="number" placeholder="Enter duration" required />
+
+        <label>Rate per Hour (₹)</label>
+        <input type="number" placeholder="Enter rate" required />
+
+        <button type="submit">Add Session</button>
+      </form>
+    </div>
+
+    <!-- Upload CSV -->
+    <div class="upload-section">
+      <h2>Upload Sessions via CSV</h2>
+      <form>
+        <label>Select CSV File</label>
+        <input type="file" accept=".csv" required />
+        <button type="submit">Upload File</button>
+      </form>
+    </div>
+
+    <footer>
+      © 2025 Payout Automation Platform — Admin Panel
+    </footer>
+  </div>
+
+</body>
+</html>

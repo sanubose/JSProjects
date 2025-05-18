@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generate & View Receipts | Admin Panel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: #f5f7fb;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #1a1f36;
+      color: white;
+      padding: 30px 0;
+      position: fixed;
+      height: 100%;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 14px 30px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #2e3652;
+    }
+
+    .main {
+      margin-left: 230px;
+      flex: 1;
+      padding: 40px;
+    }
+
+    .main h1 {
+      color: #1a1f36;
+      margin-bottom: 30px;
+    }
+
+    .form-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .form-card h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3366cc;
+    }
+
+    .table-section {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #f2f4f8;
+      color: #444;
+    }
+
+    td button {
+      background-color: #1abc9c;
+      border: none;
+      padding: 6px 12px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    td button:hover {
+      background-color: #149d82;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="session-upload.html">Upload Sessions</a>
+    <a href="generate-receipts.html">Generate Receipts</a>
+    <a href="audit-log.html">Audit Logs</a>
+    <a href="test-mode.html">Test Mode</a>
+    <a href="home.html">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Generate & View Receipts</h1>
+
+    <div class="form-card">
+      <h2>Generate New Receipt</h2>
+      <form>
+        <label>Select Mentor</label>
+        <select required>
+          <option value="">-- Select Mentor --</option>
+          <option>Ravi Kumar</option>
+          <option>Anita Sharma</option>
+          <option>Deepak Joshi</option>
+        </select>
+
+        <label>Select Month</label>
+        <input type="month" required />
+
+        <label>Remarks (optional)</label>
+        <input type="text" placeholder="e.g., Bonus sessions included" />
+
+        <button type="submit">Generate Receipt</button>
+      </form>
+    </div>
+
+    <div class="table-section">
+      <h2>Receipts History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Mentor</th>
+            <th>Month</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ravi Kumar</td>
+            <td>2025-04</td>
+            <td>₹12,000</td>
+            <td>Paid</td>
+            <td><button>View</button></td>
+          </tr>
+          <tr>
+            <td>Anita Sharma</td>
+            <td>2025-04</td>
+            <td>₹9,500</td>
+            <td>Paid</td>
+            <td><button>View</button></td>
+          </tr>
+          <tr>
+            <td>Deepak Joshi</td>
+            <td>2025-03</td>
+            <td>₹11,200</td>
+            <td>Pending</td>
+            <td><button>View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      © 2025 Payout Automation Platform — Admin Panel
+    </footer>
+  </div>
+
+</body>
+</html>

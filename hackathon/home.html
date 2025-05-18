@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payout Automation System - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 32px;
+      color: #003366;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #003366;
+      font-weight: 600;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .card:hover {
+      border-color: #007bff;
+      background: #e3f2fd;
+      transform: translateY(-3px);
+    }
+
+    .card::before {
+      content: "➤ ";
+      color: #007bff;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .logout-btn button {
+      padding: 10px 20px;
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    @media(max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Payout Automation System</h1>
+    <p>Select a module to begin</p>
+
+    <div class="grid">
+      <a href="login.html" class="card">Login Page</a>
+      <a href="admin-dashboard.html" class="card">Admin Dashboard</a>
+      <a href="mentor-dashboard.html" class="card">Mentor Dashboard</a>
+      <a href="session-upload.html" class="card">Upload Session Data</a>
+      <a href="generate-receipts.html" class="card">Generate Receipts</a>
+      <a href="receipt-view.html" class="card">Receipt View</a>
+      <a href="chat.html" class="card">Chat</a>
+      <a href="audit-log.html" class="card">Audit Logs</a>
+      <a href="test-mode.html" class="card">Test Mode</a>
+      <a href="mentor-sessions.html" class="card">Mentor Sessions</a>
+    </div>
+
+    <div class="logout-btn">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    // Get role from localStorage
+    let role = localStorage.getItem("userRole");
+
+    if (!role) {
+      // If no role found, redirect to login
+      window.location.href = "login.html";
+    }
+
+    const roleLinks = {
+      admin: [
+        "admin-dashboard.html",
+        "session-upload.html",
+        "generate-receipts.html",
+        "receipt-view.html",
+        "audit-log.html",
+        "test-mode.html"
+      ],
+      mentor: [
+        "mentor-dashboard.html",
+        "mentor-sessions.html",
+        "chat.html"
+      ]
+    };
+
+    // Hide cards not related to role
+    document.querySelectorAll(".card").forEach(card => {
+      let href = card.getAttribute("href");
+
+      // Always show login.html
+      if (href === "login.html") return;
+
+      if (role === "admin" && !roleLinks.admin.includes(href)) {
+        card.style.display = "none";
+      } else if (role === "mentor" && !roleLinks.mentor.includes(href)) {
+        card.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("userRole");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

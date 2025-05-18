@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Mode | Payout Simulation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: #f4f7fa;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #1f253d;
+      padding: 30px 20px;
+      color: white;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      margin: 10px 0;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #2e3650;
+    }
+
+    .main {
+      margin-left: 230px;
+      flex: 1;
+      padding: 40px;
+    }
+
+    .main h1 {
+      margin-bottom: 20px;
+      color: #1a1f36;
+    }
+
+    .form-section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+      max-width: 800px;
+    }
+
+    .form-section label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-section input,
+    .form-section select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .form-section button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .form-section button:hover {
+      background-color: #159d82;
+    }
+
+    .result-box {
+      margin-top: 40px;
+      background-color: #eafaf8;
+      padding: 20px;
+      border-left: 5px solid #1abc9c;
+      border-radius: 8px;
+      color: #155c52;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="session-upload.html">Upload Sessions</a>
+    <a href="generate-receipts.html">Generate Receipts</a>
+    <a href="test-mode.html">Test Payouts</a>
+    <a href="audit-log.html">Audit Logs</a>
+    <a href="chat.html">Chat</a>
+    <a href="home.html">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Dry Run: Payout Simulation</h1>
+
+    <div class="form-section">
+      <form id="simulationForm">
+        <label for="mentor">Select Mentor</label>
+        <select id="mentor" required>
+          <option value="">-- Select Mentor --</option>
+          <option value="Anjali">Anjali Sharma</option>
+          <option value="Rahul">Rahul Mehta</option>
+          <option value="Sneha">Sneha Kapoor</option>
+        </select>
+
+        <label for="rate">Hourly Rate (₹)</label>
+        <input type="number" id="rate" placeholder="e.g. 1000" required />
+
+        <label for="duration">Session Duration (in hours)</label>
+        <input type="number" id="duration" step="0.1" placeholder="e.g. 2.5" required />
+
+        <label for="tax">GST/Platform Fee (%)</label>
+        <input type="number" id="tax" placeholder="e.g. 18" required />
+
+        <button type="button" onclick="simulatePayout()">Simulate Payout</button>
+      </form>
+
+      <div id="result" class="result-box" style="display:none;"></div>
+    </div>
+
+    <footer>© 2025 Payout Automation Platform — Admin View</footer>
+  </div>
+
+  <script>
+    function simulatePayout() {
+      let mentor = document.getElementById("mentor").value;
+      let rate = parseFloat(document.getElementById("rate").value);
+      let duration = parseFloat(document.getElementById("duration").value);
+      let tax = parseFloat(document.getElementById("tax").value);
+
+      if (!mentor || isNaN(rate) || isNaN(duration) || isNaN(tax)) {
+        alert("Please fill out all fields correctly.");
+        return;
+      }
+
+      let gross = rate * duration;
+      let taxAmount = (gross * tax) / 100;
+      let net = gross - taxAmount;
+
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerHTML = `
+        <strong>Payout Simulation for ${mentor}</strong><br/><br/>
+        Gross Payout: ₹${gross.toFixed(2)}<br/>
+        Deductions (GST/Fees): ₹${taxAmount.toFixed(2)}<br/>
+        <strong>Net Payable: ₹${net.toFixed(2)}</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
