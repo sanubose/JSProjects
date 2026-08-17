@@ -1,0 +1,50 @@
+🧠 Theory: Binary Search Kya Hota Hai?
+🔹 1. Definition:
+Binary Search ek algorithm hai jo sorted array mein kisi element ko dhoondhne ke liye use hota hai.
+
+Ye har step mein array ko aadha-aadha karta hai, isliye iska naam "Binary" (do bhaag) Search hai.
+
+🔹 2. Kaise Kaam Karta Hai?
+Pura array lete hain (start = 0, end = n-1)
+
+Beech wala element (mid) nikaalte hain.
+
+Agar mid value hi target hai → 🎯 mil gaya.
+
+Agar target chhoti hai → left half mein dhoondhte hain.
+
+Agar target badi hai → right half mein dhoondhte hain.
+
+Ye process tab tak repeat hoti hai jab tak element mil na jaaye ya search space khatam na ho jaaye.
+
+🔹 3. Kaha Kaam Karta Hai?
+Sirf sorted array ya list mein.
+
+Time complexity: O(log n) → Bahut tezi se kaam karta hai.
+
+📘 Algorithm (Steps)
+low = 0, high = array.length - 1
+
+Jab tak low <= high:
+
+mid = Math.floor((low + high) / 2)
+
+Agar arr[mid] == target → return mid
+
+Agar arr[mid] < target → low = mid + 1
+
+Agar arr[mid] > target → high = mid - 1
+
+Agar loop ke baad kuch nahi mila → return -1
+
+✅ Aasaan Example Question:
+Q: Array [1, 3, 5, 7, 9] mein number 5 ka index find karo using binary search.
+
+🔹 Step-by-Step Dry Run:
+low = 0, high = 4
+
+mid = (0+4)/2 = 2, arr[2] = 5
+
+🎯 arr[mid] == target, so answer is 2
+
+

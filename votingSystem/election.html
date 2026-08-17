@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Election Page - Online Voting System</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .election-info {
+    margin-bottom: 2rem;
+  }
+  .election-info h2 {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+    color: #ffd700;
+  }
+  .date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  .candidate-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .candidate-list li {
+    margin: 0.6rem 0;
+  }
+  label {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    border: 2px solid #ffd700;
+    display: inline-block;
+    width: 100%;
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="radio"]:checked + label {
+    background: #ffd700;
+    color: #333;
+    font-weight: 700;
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: #ffd700;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    color: #333;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #e6c200;
+  }
+  .message {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  @media (max-width: 480px) {
+    .container {
+      padding: 1.5rem 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <h1>Upcoming Elections</h1>
+  <div class="container">
+    <form id="voteForm">
+      <div class="election-info">
+        <h2 id="electionTitle">City Council Election 2025</h2>
+        <div class="date" id="electionDate">Date: April 30, 2025</div>
+        <ul class="candidate-list" id="candidateList">
+          <li>
+            <input type="radio" id="candidate1" name="candidate" value="Rahul Gandhi" />
+            <label for="candidate1">Rahul Gandhi</label>
+          </li>
+          <li>
+            <input type="radio" id="candidate2" name="candidate" value="Narendra Damodar Das Modi" />
+            <label for="candidate2">Narendra Damodar Das Modi</label>
+          </li>
+          <li>
+            <input type="radio" id="candidate3" name="candidate" value="Kejariwal" />
+            <label for="candidate3">Kejariwal</label>
+          </li>
+        </ul>
+      </div>
+      <button type="submit">Cast Vote</button>
+    </form>
+    <div class="message" id="message"></div>
+  </div>
+
+<script>
+  const voteForm = document.getElementById('voteForm');
+  const message = document.getElementById('message');
+
+  voteForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const selectedCandidate = voteForm.candidate.value;
+    if (!selectedCandidate) {
+      message.style.color = '#ff6b6b';
+      message.textContent = 'Please select a candidate before casting your vote.';
+      return;
+    }
+    // Disable form after voting
+    voteForm.querySelectorAll('input, button').forEach(el => el.disabled = true);
+    message.style.color = '#a1e887';
+    message.textContent = `Thank you for voting for ${selectedCandidate}! Your vote has been recorded securely.`;
+  });
+</script>
+
+</body>
+</html>
